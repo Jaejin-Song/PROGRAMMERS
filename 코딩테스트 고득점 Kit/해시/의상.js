@@ -1,15 +1,12 @@
 function solution(clothes) {
-  const map = new Map();
+  const cMap = new Map();
 
   for (const [value, key] of clothes) {
-    const isExist = map.get(key);
-    map.set(key, isExist ? isExist + 1 : 1);
+    cMap.set(key, cMap.has(key) ? cMap.get(key) + 1 : 1);
   }
 
-  let answer = 1;
-  for (const value of map.values()) {
-    answer = answer * (value + 1);
-  }
+  const result =
+    [...cMap.values()].reduce((total, cur) => total * (cur + 1), 1) - 1;
 
-  return answer - 1;
+  return result;
 }
