@@ -1,8 +1,15 @@
 function solution(participant, completion) {
-  participant.sort();
-  completion.sort();
+  const pMap = new Map();
 
-  for (const i in participant) {
-    if (participant[i] !== completion[i]) return participant[i];
+  participant.forEach((p) => {
+    pMap.set(p, pMap.has(p) ? pMap.get(p) + 1 : 1);
+  });
+
+  completion.forEach((c) => {
+    pMap.set(c, pMap.get(c) - 1);
+  });
+
+  for (const [key, value] of pMap) {
+    if (value === 1) return key;
   }
 }
