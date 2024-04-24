@@ -1,20 +1,18 @@
 function solution(arr) {
-  const answer = [];
-  answer.push(arr[0]);
+  const result = [];
 
-  for (let i = 1; i < arr.length; i++) {
-    const last = answer[answer.length - 1];
+  for (let i = 0; i < arr.length; i++) {
+    if (result.length === 0) {
+      result.push(arr[i]);
+      continue;
+    }
 
-    if (arr[i] === last) continue;
+    const lastValue = result[result.length - 1];
 
-    answer.push(arr[i]);
+    if (lastValue !== arr[i]) {
+      result.push(arr[i]);
+    }
   }
 
-  return answer;
-}
-
-// 참고할만한 방법
-// 효율적이지는 않아서 배열의 크기가 작을때만 사용
-function solution2(arr) {
-  return arr.filter((val, index) => val != arr[index + 1]);
+  return result;
 }
